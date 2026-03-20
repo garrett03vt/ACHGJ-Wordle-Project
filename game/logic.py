@@ -1,0 +1,1 @@
+# wordle rules (evaluate guesses against the target word)

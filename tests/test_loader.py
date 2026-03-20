@@ -1,0 +1,1 @@
+# test the word loader and cleaning functions

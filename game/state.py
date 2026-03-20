@@ -1,0 +1,1 @@
+# Tracks game state (guesses, attempts, etc.)

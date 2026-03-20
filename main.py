@@ -1,1 +1,1 @@
-# basic main file
+# main file for project, runs the game and connects everything
