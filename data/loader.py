@@ -18,32 +18,43 @@ def clean_words(words: Iterable[str],
             Rules:
             - strip surrounding whitespace
             - optionally lowercase words
+            - word mus be purely alphabetic
             - optionally remove duplicates while preserving order
             - keep words of exactly ``word_length``
     """
-    cleaned = []
-    seen = set() if dedupe else None
-    
-    for word in words:
-        word = word.strip()
+    cleaned: list[str] = []
+    seen: set[str] = set()
+
+    for raw_word in words:
+        word = raw_word.strip()
         if normalize_case:
             word = word.lower()
-        if len(word) == word_length:
-            if not dedupe or (seen is not None and word not in seen):
-                cleaned.append(word)
-                if seen is not None:
-                    seen.add(word)
-    
+
+        if len(word) != word_length or not word.isalpha():
+            continue
+
+        if dedupe:
+            if word in seen:
+                continue
+            seen.add(word)
+
+        cleaned.append(word)
+
     return cleaned
 
 def load_word_list(file_path: Path) -> List[str]:
     """Load a list of words from a file."""
     with file_path.open("r", encoding="utf-8") as f:
         return clean_words(f.readlines())
+    
+def load_words_default() -> List[str]:
+    """Load the default list of Wordle words from the project."""
+    return load_word_list(DEFAULT_WORDS_FILE)
 
 __all__ = [
     "DEFAULT_WORD_LENGTH",
     "DEFAULT_WORDS_FILE",
     "clean_words",
     "load_word_list",
+    "load_words_default",
 ]
