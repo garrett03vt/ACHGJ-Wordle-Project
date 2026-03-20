@@ -1,13 +1,8 @@
-# solver.py     Garrette Ritz       3/20/2026
+# solver/solver.py     Garrette Ritz       3/20/2026
 # main solving loop and picks next best guess
 
 from solver.heuristics import score_word
-try:
-    from game.logic import get_feedback         
-except ImportError:
-    def get_feedback(secret, guess):
-        raise NotImplementedError("get_feedback function not implemented")  # get_feedback() NOT FINISHED YET. This prevents errors for testing purposes
-
+from game.logic import get_feedback         
 
 # Check if a word matches the feedback for a given guess
 def matches_feedback(word, guess, feedback):

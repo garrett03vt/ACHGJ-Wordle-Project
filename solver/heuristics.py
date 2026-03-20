@@ -1,4 +1,4 @@
-# heuristics.py     Garrette Ritz       3/20/2026
+# solver/heuristics.py     Garrette Ritz       3/20/2026
 # Scoring strategies (frequency, entropy, etc.)
 
 from collections import Counter
