@@ -1,7 +1,7 @@
 # solver/solver.py     Garrette Ritz       3/20/2026
 # main solving loop and picks next best guess
 
-from solver.heuristics import score_word
+from solver.heuristics import score_word, choose_candidate_words
 from game.logic import get_feedback         
 
 # Check if a word matches the feedback for a given guess
@@ -16,10 +16,12 @@ def filter_words(words, guess, feedback):
 
 # Pick the highest scoring word
 def choose_best_guess(possible_words):
+    candidates = choose_candidate_words(possible_words)
+
     best_score = -1
     best_word = None
 
-    for word in possible_words:
+    for word in candidates:
         score = score_word(word, possible_words)
         if score > best_score:
             best_score = score
