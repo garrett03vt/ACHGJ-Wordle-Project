@@ -7,3 +7,5 @@ Each guess is chosen to give the most information about the secret word using en
 After each guess, the AI checks which letters are correct, in the wrong spot, or not in the word. 
 It then removes any words from the list that don’t match the feedback. The AI repeats this until it finds the secret word. 
 By doing this, it can solve Wordle quickly without learning or training.
+
+To run the program, enter py main.py or python main.py in the terminal
