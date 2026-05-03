@@ -1,7 +1,7 @@
 # solver/solver.py     Garrette Ritz       3/20/2026
 # main solving loop and picks next best guess
 
-from solver.heuristics import score_word, choose_candidate_words
+from solver.heuristics import score_word, choose_candidate_words, choose_best_guess_frequency
 from game.logic import get_feedback         
 
 # Check if a word matches the feedback for a given guess
@@ -28,6 +28,30 @@ def choose_best_guess(possible_words):
             best_word = word
 
     return best_word
+
+
+
+
+def solve_word_frequency(secret, all_words):
+    """
+    Solve a Wordle puzzle using the simple frequency-based heuristic.
+
+    :param secret: The secret word to guess.
+    :param all_words: The initial list of candidate words.
+    :return: A list of (guess, feedback) tuples representing the guesses made.
+    """
+    possible_words = all_words.copy()
+    guesses = []
+    while True:
+        guess = choose_best_guess_frequency(possible_words)
+        feedback = get_feedback(secret, guess)
+        guesses.append((guess, feedback))
+        if guess == secret:
+            break
+        possible_words = filter_words(possible_words, guess, feedback)
+        if not possible_words:
+            raise ValueError("No possible words left! Something went wrong.")
+    return guesses
 
 
 # Wordle solver. Returns a list of (guess, feedback)

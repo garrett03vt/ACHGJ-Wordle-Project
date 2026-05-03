@@ -5,7 +5,7 @@ from pathlib import Path
 from typing import Iterable, List
 
 DEFAULT_WORD_LENGTH = 5
-DEFAULT_WORDS_FILE = Path(__file__).with_name("words.txt")
+DEFAULT_WORDS_FILE = Path(__file__).with_name("Dictionary_Least.txt")
 
 
 def clean_words(words: Iterable[str],
